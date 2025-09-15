@@ -72,6 +72,18 @@ def visualize_department_pie(data):
     plt.show()
 
 # Avash Shrestha, Student number: 32100429
+def visualize_marital_status_bar(data):
+    marital_counts = data["MaritalStatus"].value_counts()
+
+    plt.figure(figsize=(6, 4))
+    plt.bar(marital_counts.index, marital_counts.values, color=["skyblue", "lightgreen", "salmon"])
+    plt.xlabel("Marital Status")
+    plt.ylabel("Number of Employees")
+    plt.title("Employees by Marital Status")
+    plt.show()
+
+
+# Avash Shrestha, Student number: 32100429
 if __name__ == "__main__":
     df = load_data()
     print(df.head())  # shows first 5 rows
@@ -82,3 +94,4 @@ if __name__ == "__main__":
 
 
     visualize_department_pie(df)
+    visualize_marital_status_bar(df)
