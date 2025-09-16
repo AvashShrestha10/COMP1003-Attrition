@@ -84,6 +84,52 @@ def visualize_marital_status_bar(data):
 
 
 # Avash Shrestha, Student number: 32100429
+import tkinter as tk
+from tkinter import ttk
+
+def show_dashboard(data, summary):
+    # Create Tkinter window
+    root = tk.Tk()
+    root.title("Avash Shrestha - Student ID: 32100429 - Dashboard")
+    root.geometry("500x400")
+
+    # Title
+    title_label = tk.Label(root, text="Employee Engagement Dashboard", font=("Arial", 14, "bold"))
+    title_label.pack(pady=10)
+
+    # Show key metrics
+    metrics_frame = ttk.Frame(root)
+    metrics_frame.pack(pady=10)
+
+    metrics = [
+        f"Total Employees: {summary['Total Employees']}",
+        f"Departments: {', '.join(summary['Departments'])}",
+        f"Attrition (Total): {summary['Total Attrition']}",
+        f"Average Age: {summary['Age']['Average']}",
+        f"Average Hourly Rate: {summary['HourlyRate']['Average']}",
+        f"Average Work-Life Balance: {summary['Average WorkLifeBalance']}"
+    ]
+
+    for m in metrics:
+        lbl = tk.Label(metrics_frame, text=m, font=("Arial", 11))
+        lbl.pack(anchor="w")
+
+    # Buttons for charts
+    btn_frame = ttk.Frame(root)
+    btn_frame.pack(pady=20)
+
+    btn_pie = ttk.Button(btn_frame, text="Show Department Pie Chart", command=lambda: visualize_department_pie(data))
+    btn_pie.grid(row=0, column=0, padx=10)
+
+    btn_bar = ttk.Button(btn_frame, text="Show Marital Status Bar Chart", command=lambda: visualize_marital_status_bar(data))
+    btn_bar.grid(row=0, column=1, padx=10)
+
+    # Run the Tkinter loop
+    root.mainloop()
+
+
+
+# Avash Shrestha, Student number: 32100429
 if __name__ == "__main__":
     df = load_data()
     print(df.head())  # shows first 5 rows
@@ -95,3 +141,4 @@ if __name__ == "__main__":
 
     visualize_department_pie(df)
     visualize_marital_status_bar(df)
+    show_dashboard(df, results)
